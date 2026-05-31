@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  slskd:
+    image: slskd/slskd:latest
+    container_name: music-slskd
+    ports:
+      - "5030:5030"
+      - "50300:50300"
+    environment:
+      - SLSKD_SLSK_USERNAME=${SLSKD_USERNAME}
+      - SLSKD_SLSK_PASSWORD=${SLSKD_PASSWORD}
+      - SLSKD_HEADLESS=true
+      - SLSKD_API_KEY=role=Administrator;cidr=0.0.0.0/0,::/0;${SLSKD_SECRET_API_KEY}
+      
+      - SLSKD_REMOTE_FILE_MANAGEMENT=true
+      - SLSKD_UMASK=022
+      
+      - SLSKD_SLSK_LISTEN_PORT=50300
+      - SLSKD_SHARED_DIR=/app/shared
+      
+      - SLSKD_DOWNLOAD_SLOTS=128
+      - SLSKD_SLSK_TRANSFER_BUFFER=262144
+    volumes:
+      - /home/soulseek:/app
+      - home/soulseek/downloads:/app/downloads
+      - home/soulseek/incomplete:/app/incomplete
+      - ./shared:/app/shared:ro
+    restart: unless-stopped
