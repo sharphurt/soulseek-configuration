@@ -22,8 +22,8 @@ services:
       - SLSKD_DOWNLOAD_SLOTS=128
       - SLSKD_SLSK_TRANSFER_BUFFER=262144
     volumes:
-      - /home/soulseek:/app
-      - home/soulseek/downloads:/app/downloads
-      - home/soulseek/incomplete:/app/incomplete
+      - /home/sharphurt/soulseek:/app
+      - home/sharphurt/soulseek/downloads:/app/downloads
+      - home/sharphurt/soulseek/incomplete:/app/incomplete
       - ./shared:/app/shared:ro
     restart: unless-stopped
