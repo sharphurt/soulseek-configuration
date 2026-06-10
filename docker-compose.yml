@@ -23,7 +23,7 @@ services:
       - SLSKD_SLSK_TRANSFER_BUFFER=262144
     volumes:
       - /home/sharphurt/soulseek:/app
-      - ./shared:/app/shared:ro
+      - /home/sharphurt/music/clean_library:/app/shared:ro
     restart: unless-stopped
 
 networks:
