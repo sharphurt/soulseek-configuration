@@ -26,3 +26,8 @@ services:
       - /home/sharphurt/soulseek:/app
       - ./shared:/app/shared:ro
     restart: unless-stopped
+
+networks:
+  default:
+    name: music-network
+    external: true
