@@ -12,18 +12,17 @@ services:
       - SLSKD_SLSK_PASSWORD=${SLSKD_PASSWORD}
       - SLSKD_HEADLESS=false
       - SLSKD_API_KEY=role=Administrator;cidr=0.0.0.0/0,::/0;${SLSKD_SECRET_API_KEY}
-
       - SLSKD_REMOTE_FILE_MANAGEMENT=true
       - SLSKD_UMASK=022
-
       - SLSKD_SLSK_LISTEN_PORT=50300
       - SLSKD_SHARED_DIR=/app/shared
-
+      - SLSKD_DOWNLOADS_DIR=/app/downloads
       - SLSKD_DOWNLOAD_SLOTS=128
       - SLSKD_SLSK_TRANSFER_BUFFER=262144
     volumes:
       - /home/sharphurt/soulseek:/app
       - /home/sharphurt/music/clean_library:/app/shared:ro
+      - /home/sharphurt/music/downloads:/app/downloads
     restart: unless-stopped
 
 networks:
