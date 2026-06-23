@@ -1,0 +1,17 @@
+throttling:
+  search:
+    incoming:
+      concurrency: 10 # number of search requests to process at the same time
+      circuit_breaker: 500 # maximum number of pending search requests
+
+integrations:
+  webhooks:
+    my_webhook:
+      on:
+        - DownloadFileComplete
+      call:
+        url: http://musicserver:8090/api/soulseek/webhook/downloadcomplete
+        ignore_certificate_errors: false
+        timeout: 5000 # in milliseconds
+        retry:
+          attempts: 3

@@ -6,7 +6,7 @@ services:
     ports:
       - "5030:5030"
       - "5031:5031"
-      - "50300:50300"
+      - "51300:50300"
     environment:
       - SLSKD_SLSK_USERNAME=${SLSKD_USERNAME}
       - SLSKD_SLSK_PASSWORD=${SLSKD_PASSWORD}
@@ -19,11 +19,11 @@ services:
       - SLSKD_DOWNLOAD_SLOTS=128
       - SLSKD_SLSK_TRANSFER_BUFFER=262144
     volumes:
-      - /home/sharphurt/soulseek:/app
-      - /home/sharphurt/music/clean_library:/app/shared:ro
+      - ${SLSKD_DATA_DIR}/soulseek:/app
+      - ${SLSKD_SHARED_DIR}:/app/shared:ro
+      - ./slskd.yml:/app/slskd.yml:ro
     restart: unless-stopped
 
 networks:
   default:
     name: music-network
-    external: true
